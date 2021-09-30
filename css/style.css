@@ -245,6 +245,7 @@
 }
 #filter-main .filter-field[data-type="area"] .content-field .from {
     margin-right: -1px;
+    border-right: none !important;
 }
 #filter-main .filter-field[data-type="area"] .content-field .to input,
 #filter-main .filter-field[data-type="area"] .content-field .from input {
