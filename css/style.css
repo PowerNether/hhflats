@@ -166,6 +166,8 @@
 #filter-main .filter-field[data-type="area"] .content-field .to input::placeholder {
     font-size: 0;
 }
+#filter-main .filter-field[data-type="price"] .content-field .from input:not(:placeholder-shown),
+#filter-main .filter-field[data-type="price"] .content-field .to input:not(:placeholder-shown),
 #filter-main .filter-field[data-type="area"] .content-field .from input:not(:placeholder-shown),
 #filter-main .filter-field[data-type="area"] .content-field .to input:not(:placeholder-shown) {
     background: #F7F6FB;
