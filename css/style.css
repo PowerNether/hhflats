@@ -233,12 +233,21 @@
     flex-shrink: 0;
     flex-basis: 284px;
     margin-right: 0;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    transition: border .35s, background .35s;
+}
+#filter-main .filter-field[data-type="area"]:hover {
+    border: 1px solid #5947B3;
+}
+#filter-main .filter-field[data-type="area"]:hover .content-field .from {
+    border-right: 1px solid #5947B3;
 }
 #filter-main .filter-field[data-type="area"] .content-field {
     width: 100%;
     display: flex;
     align-items: stretch;
-    border: none;
+    border: none !important;
 }
 #filter-main .filter-field[data-type="area"] .content-field .from,
 #filter-main .filter-field[data-type="area"] .content-field .to {
@@ -246,33 +255,26 @@
     height: 42px;
 }
 #filter-main .filter-field[data-type="area"] .content-field .from {
-    margin-right: -1px;
-    border-right: none !important;
-}
-#filter-main .filter-field[data-type="area"] .content-field .to input,
-#filter-main .filter-field[data-type="area"] .content-field .from input {
-    border: 1px solid #CCCCCC;
-    transition: border .35s, background .35s;
-}
-#filter-main .filter-field[data-type="area"] .content-field .from input {
     border-radius: 4px 0 0 4px;
 }
-#filter-main .filter-field[data-type="area"] .content-field .to input {
+#filter-main .filter-field[data-type="area"] .content-field .to {
     border-radius: 0 4px 4px 0;
 }
-#filter-main .filter-field[data-type="area"] .content-field .to input:hover,
-#filter-main .filter-field[data-type="area"] .content-field .from input:hover {
-    border: 1px solid #5947B3;
+#filter-main .filter-field[data-type="area"] .content-field .from input,
+#filter-main .filter-field[data-type="area"] .content-field .to input {
+    border: none !important;
+    border-radius: 4px;
 }
-
-#filter-main .filter-field[data-type="area"] .content-field .from input:focus,
-#filter-main .filter-field[data-type="area"] .content-field .to input:focus {
-    border: 1px solid #E9E6FA;
+#filter-main .filter-field[data-type="area"] .content-field .to,
+#filter-main .filter-field[data-type="area"] .content-field .from,
+#filter-main .filter-field[data-type="area"] .content-field .to input,
+#filter-main .filter-field[data-type="area"] .content-field .from input {
+    transition: border .35s, background .35s;
 }
 #filter-main .filter-field[data-type="area"] .content-field .from input:not(:placeholder-shown),
 #filter-main .filter-field[data-type="area"] .content-field .to input:not(:placeholder-shown) {
     padding: 20px 40px 6px 12px;
-    border: 1px solid #ACA3D9;
+    background: #F7F6FB;
 }
 
 #filter-main .bottom-line__container {
@@ -302,9 +304,6 @@
     margin: 0;
     transition: all .3s;
 }
-#filter-main .bottom-line .cwsearch .search-input:hover {
-    border: 1px solid #5947B3;
-}
 #filter-main .bottom-line .cwsearch label {
     font-size: 15px;
     line-height: 18px;
@@ -325,7 +324,6 @@
 }
 #filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) {
     background: #F7F6FB;
-    border: 1px solid #ACA3D9;
 }
 #filter-main .bottom-line .cwsearch .search-input:focus ~ label,
 #filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) ~ label {
@@ -334,12 +332,12 @@
     top: 6px;
     transform: none;
 }
-#filter-main .bottom-line .cwsearch .search-input:focus {
-    border: 1px solid #E9E6FA;
-}
+#filter-main .bottom-line .cwsearch .search-input:focus,
 #filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) {
     padding: 20px 15px 6px 40px;
-    border: 1px solid #ACA3D9;
+}
+#filter-main .bottom-line .cwsearch .search-input:hover {
+    border: 1px solid #5947B3;
 }
 #filter-main .bottom-line .filter-field {
     width: 100%;
