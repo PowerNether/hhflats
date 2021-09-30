@@ -23,6 +23,13 @@
     border-radius: 4px;
     padding: 18px 40px 6px 12px;
 }
+#filter-main .filter-field[data-type="typesale"] .content-field .select-btn.disabled {
+    background: #F5F5F7;
+    border: 1px solid #CCCCCC;
+    cursor: auto;
+    user-select: none;
+    pointer-events: none;
+}
 #filter-main .filter-field[data-type="typesale"] .content-field .select-btn label {
     position: absolute;
     top: 6px;
