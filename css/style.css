@@ -1,0 +1,398 @@
+.admin-line {
+    display: none;
+}
+
+#filter-main .line-box {
+    display: flex;
+    align-items: stretch;
+	margin: 0 0 16px;
+	position: relative;
+}
+
+#filter-main .filter-field[data-type="typesale"] {
+    flex-basis: 112px;
+}
+#filter-main .filter-field[data-type="typesale"] .content-field .select-btn {
+    font-size: 15px;
+    line-height: 18px;
+    color: #B3B3B3;
+    display: flex;
+    align-items: center;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 18px 40px 6px 12px;
+}
+#filter-main .filter-field[data-type="typesale"] .content-field .select-btn label {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    font-size: 11px;
+    line-height: 11px;
+    color: #B3B3B3;
+    margin: 0;
+}
+#filter-main .filter-field[data-type="typesale"] .select-btn span.arrow {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%) rotate(90deg);
+    background: #B3B3B3;
+}
+
+#filter-main .filter-field[data-type="rooms"] {
+    display: flex;
+    align-items: stretch;
+	height: 42px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px;
+    transition: border .35s;
+    flex-shrink: 0;
+}
+#filter-main .filter-field[data-type="rooms"]:hover {
+    border: 1px solid #5947B3;
+}
+#filter-main .filter-field[data-type="rooms"].line-check .item {
+	position: relative;
+	width: auto !important;
+	height: 34px !important;
+	line-height: 34px !important;
+    color: #5947B3;
+    padding: 0 8px;
+    margin-right: 3px;
+	border: none;
+	border-radius: 4px;
+    transition: background .35s, color .35s;
+}
+#filter-main .filter-field[data-type="rooms"].line-check .item:last-child {
+	margin-right: 0;
+} 
+#filter-main .filter-field[data-type="rooms"].line-check .item.active {
+    color: #333;
+	background: #E9E6FA;
+}
+#filter-main .filter-field[data-type="rooms"].line-check .item:hover {
+    background: #F5F5F7;
+}
+#filter-main .filter-field[data-type="rooms"] .checktype {
+    display: flex;
+    align-items: stretch;
+}
+#filter-main .filter-field[data-type="rooms"] .checktype > div {
+	line-height: 34px;
+    color: #5947B3;
+	background: #F5F5F7;
+	padding: 0 12px;
+	cursor: pointer;
+	margin-left: 3px;
+	border-radius: 4px;
+    transition: background .35s, color .35s;
+}
+#filter-main .filter-field[data-type="rooms"] .checktype > div.active {
+    color: #333;
+	background: #E9E6FA;
+}
+
+
+#filter-main .filter-field[data-type="price"] {
+    flex-shrink: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    transition: border .35s;
+}
+#filter-main .filter-field[data-type="price"]:hover {
+    border: 1px solid #5947B3;
+}
+#filter-main .filter-field[data-type="price"]:hover .content-field .from {
+    border-right: 1px solid #5947B3;
+}
+#filter-main .filter-field[data-type="price"] .content-field {
+    border: none;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from,
+#filter-main .filter-field[data-type="price"] .content-field .to {
+    width: 100%;
+}
+#filter-main .filter-field[data-type="price"] .content-field .to,
+#filter-main .filter-field[data-type="price"] .content-field .from,
+#filter-main .filter-field[data-type="price"] .content-field .from input,
+#filter-main .filter-field[data-type="price"] .content-field .to input {
+    height: 40px;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from label,
+#filter-main .filter-field[data-type="price"] .content-field .to label,
+#filter-main .filter-field[data-type="area"] .content-field .from label,
+#filter-main .filter-field[data-type="area"] .content-field .to label {
+    font-size: 15px;
+    line-height: 18px;
+    color: #808080;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    z-index: 1;
+    margin: 0;
+    transition: all .35s;
+    pointer-events: none;
+    user-select: none;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from input,
+#filter-main .filter-field[data-type="price"] .content-field .to input,
+#filter-main .filter-field[data-type="area"] .content-field .from input,
+#filter-main .filter-field[data-type="area"] .content-field .to input {
+    padding: 13px 40px 13px 12px;
+    text-align: left;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from input {
+    border-radius: 4px 0 0 4px;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from input::placeholder,
+#filter-main .filter-field[data-type="price"] .content-field .to input::placeholder,
+#filter-main .filter-field[data-type="area"] .content-field .from input::placeholder,
+#filter-main .filter-field[data-type="area"] .content-field .to input::placeholder {
+    font-size: 0;
+}
+#filter-main .filter-field[data-type="area"] .content-field .from input:not(:placeholder-shown),
+#filter-main .filter-field[data-type="area"] .content-field .to input:not(:placeholder-shown) {
+    background: #F7F6FB;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from input:focus ~ label,
+#filter-main .filter-field[data-type="price"] .content-field .to input:focus ~ label,
+#filter-main .filter-field[data-type="price"] .content-field .from input:not(:placeholder-shown) ~ label,
+#filter-main .filter-field[data-type="price"] .content-field .to input:not(:placeholder-shown) ~ label,
+#filter-main .filter-field[data-type="area"] .content-field .from input:focus ~ label,
+#filter-main .filter-field[data-type="area"] .content-field .to input:focus ~ label,
+#filter-main .filter-field[data-type="area"] .content-field .from input:not(:placeholder-shown) ~ label,
+#filter-main .filter-field[data-type="area"] .content-field .to input:not(:placeholder-shown) ~ label {
+    font-size: 11px;
+    line-height: 11px;
+    top: 6px;
+    transform: none;
+}
+#filter-main .filter-field[data-type="price"] .content-field .from input:not(:placeholder-shown),
+#filter-main .filter-field[data-type="price"] .content-field .to input:not(:placeholder-shown) {
+    padding: 20px 40px 6px 12px;
+}
+
+
+#filter-main .filter-field[data-type="price"] .content-field .from {
+    border-right: 1px solid #CCCCCC;;
+    transition: border .35s;
+}
+#filter-main .filter-field.number-list .currency {
+    display: flex;
+    flex-shrink: 0;
+    width: auto;
+    padding: 3px;
+    height: 40px;
+    margin-right: -3px;
+}
+#filter-main .filter-field.number-list .currency .item {
+    border: none;
+    flex-shrink: 0;
+    border-radius: 4px;
+    line-height: 34px;
+    width: auto;
+    padding: 0 12px;
+    margin-right: 3px;
+    transition: color .35s, background .35s;
+    cursor: pointer;
+    font-size: 15px;
+    color: #5947B3;
+}
+#filter-main .filter-field.number-list .currency .item:hover {
+    background: #F7F6FB;
+}
+#filter-main .filter-field.number-list .currency .item.active {
+    color: #333;
+    background: #E9E6FA;
+}
+#filter-main .filter-field.number-list .currency .item:last-child {
+    border-radius: 4px;
+}
+
+
+#filter-main .filter-field[data-type="area"] {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 284px;
+    margin-right: 0;
+}
+#filter-main .filter-field[data-type="area"] .content-field {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    border: none;
+}
+#filter-main .filter-field[data-type="area"] .content-field .from,
+#filter-main .filter-field[data-type="area"] .content-field .to {
+    width: 100%;
+    height: 42px;
+}
+#filter-main .filter-field[data-type="area"] .content-field .from {
+    margin-right: -1px;
+}
+#filter-main .filter-field[data-type="area"] .content-field .to input,
+#filter-main .filter-field[data-type="area"] .content-field .from input {
+    border: 1px solid #CCCCCC;
+    transition: border .35s, background .35s;
+}
+#filter-main .filter-field[data-type="area"] .content-field .from input {
+    border-radius: 4px 0 0 4px;
+}
+#filter-main .filter-field[data-type="area"] .content-field .to input {
+    border-radius: 0 4px 4px 0;
+}
+#filter-main .filter-field[data-type="area"] .content-field .to input:hover,
+#filter-main .filter-field[data-type="area"] .content-field .from input:hover {
+    border: 1px solid #5947B3;
+}
+
+#filter-main .filter-field[data-type="area"] .content-field .from input:focus,
+#filter-main .filter-field[data-type="area"] .content-field .to input:focus {
+    border: 1px solid #E9E6FA;
+}
+#filter-main .filter-field[data-type="area"] .content-field .from input:not(:placeholder-shown),
+#filter-main .filter-field[data-type="area"] .content-field .to input:not(:placeholder-shown) {
+    padding: 20px 40px 6px 12px;
+    border: 1px solid #ACA3D9;
+}
+
+#filter-main .bottom-line__container {
+    display: flex;
+    align-items: stretch;
+}
+#filter-main .bottom-line .cwsearch {
+    width: 100%;
+    flex: 1 1 294px;
+    position: relative;
+    z-index: 15;
+    margin-right: 16px;
+}
+#filter-main .bottom-line .cwsearch .search-input {
+	background: #fff url(img/search.png) 12px 50% no-repeat;
+    border: none;
+    padding: 13px 15px 13px 40px;
+    font-size: 15px;
+    color: #333;
+    width: 100%;
+    height: 42px;
+    line-height: 40px;
+    display: block;
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    margin: 0;
+    transition: all .3s;
+}
+#filter-main .bottom-line .cwsearch .search-input:hover {
+    border: 1px solid #5947B3;
+}
+#filter-main .bottom-line .cwsearch label {
+    font-size: 15px;
+    line-height: 18px;
+    color: #808080;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    z-index: 1;
+    margin: 0;
+    transition: all .35s;
+    pointer-events: none;
+    user-select: none;
+}
+#filter-main .bottom-line .cwsearch .search-input::placeholder {
+    color: #808080;
+    font-size: 0;
+}
+#filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) {
+    background: #F7F6FB;
+    border: 1px solid #ACA3D9;
+}
+#filter-main .bottom-line .cwsearch .search-input:focus ~ label,
+#filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) ~ label {
+    font-size: 11px;
+    line-height: 11px;
+    top: 6px;
+    transform: none;
+}
+#filter-main .bottom-line .cwsearch .search-input:focus {
+    border: 1px solid #E9E6FA;
+}
+#filter-main .bottom-line .cwsearch .search-input:not(:placeholder-shown) {
+    padding: 20px 15px 6px 40px;
+    border: 1px solid #ACA3D9;
+}
+#filter-main .bottom-line .filter-field {
+    width: 100%;
+    flex: 0 0;
+    white-space: nowrap;
+}
+#filter-main .filter-field.more .select-btn {
+    padding: 0 24px;
+    background: #E9E6FA;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .35s, color .35s;
+}
+#filter-main .filter-field.more .select-btn span.arrow,
+#filter-main .filter-field.more .select-btn span.count {
+    transition: background-color .35s, color .35s;
+}
+#filter-main .filter-field.more .select-btn:hover {
+    color: #E9E6FA;
+    background: #5947B3;
+}
+#filter-main .filter-field.more .select-btn:hover span.count {
+    color: #5947B3;
+    background: #fff;
+}
+#filter-main .filter-field.more .select-btn:hover span.arrow {
+    background: #fff;
+}
+#filter-main .btn-search-full {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 42px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 42px;
+    background: #5947B3;
+    border-radius: 4px;
+    padding: 0 24px;
+    transition: background-color .35s, color .35s;
+    cursor: pointer;
+}
+#filter-main .btn-search-full span {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 13px;
+    color: #5947B3;
+    display: block;
+    background: #fff;
+    border-radius: 10px;
+    margin: 0 0 0 8px;
+    padding: 4px 6px;
+    transition: background-color .35s, color .35s;
+}
+#filter-main .btn-search-full:hover {
+    color: #5947B3;
+    background: #E9E6FA;
+}
+#filter-main .btn-search-full:hover span {
+    color: #fff;
+    background: #5947B3;
+}

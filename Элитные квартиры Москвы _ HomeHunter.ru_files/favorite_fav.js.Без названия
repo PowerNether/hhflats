@@ -1,0 +1,155 @@
+jQuery(document).ready(function() {
+
+    function is_empty(mixed_var) {
+        return (false
+            || (typeof(mixed_var) === 'undefined')
+            || mixed_var === ''
+            || mixed_var === 0
+            || mixed_var === '0'
+            || mixed_var === null
+            || mixed_var === false
+            || ( (typeof(mixed_var) === 'number') && isNaN(mixed_var) )
+            || ( (typeof(mixed_var) === 'object') && (mixed_var.length === 0) )
+        );
+    }
+
+
+    // div#fav_modal_addcll
+    function open_add_collection_modal(on_close_end_func) {
+        let jmodal = jQuery('div#favorite_modal_addcll.modal');
+        if (on_close_end_func) {
+            let m_modal_instance = M.Modal.getInstance(jmodal);
+            m_modal_instance.options.onCloseEnd = on_close_end_func;
+        }
+        jmodal.modal('open');
+    }
+
+    jQuery('div#favorite_modal_addcll').modal({
+        onOpenEnd: function() { jQuery('div#favorite_modal_addcll input').focus(); },
+    })
+    jQuery('div#favorite_modal_addcll input').keyup(function() {
+        jQuery('div#favorite_modal_addcll button').prop('disabled', is_empty(jQuery(this).val()) );
+    });
+    jQuery('div#favorite_modal_addcll button').click(function() {
+        let jthis = jQuery(this);
+        let jmodal = jthis.closest('div#favorite_modal_addcll.modal');
+        let name = jmodal.find('input').val();
+
+        jQuery.ajax('/favorite/fav/addcll?name='+name)
+            .done(function(data) {
+                // console.log(data);
+                jmodal.find('input').val("").keyup();
+                jmodal.modal('close');
+
+                if (!is_empty(data['result_notifications'])) {
+                    let jnotifications_control = jQuery('div.notifications-control');
+                    if (jnotifications_control.length === 1) {
+                        jnotifications_control.children('div.notification').append(data['result_notifications']);
+                    }
+                }
+            })
+            .fail(function(err) { console.log(err); })
+        ;
+    });
+
+
+
+    // div.favoriteControl
+    function call_ajax(jcontrol, url) {
+        let jcontrol_wrk_obnid = jcontrol.data('wrk_obnid');
+        url += '&wrk_obnid='+jcontrol_wrk_obnid;
+        return jQuery.ajax(url)
+            .done(function(data) {
+                let scroll_cont = jcontrol.children('div.actions-list').children('div.actions-collections');
+                if (scroll_cont.length > 0) {
+                    let scroll_elem = scroll_cont.children('p.actions-collections__title');
+                    let offset = scroll_cont.offset().top - scroll_elem.offset().top;
+                    jcontrol.children('div.actions-list').replaceWith(data['actions_list']);
+                    jcontrol.children('div.actions-list').children('div.actions-collections').scrollTop(offset);
+                }
+                else {
+                    jcontrol.children('div.actions-list').replaceWith(data['actions_list']);
+                }
+
+                let is_has_checked = (jcontrol.find('div.actions-list input[type=checkbox]:checked').length > 0);
+                jcontrol.toggleClass('active', is_has_checked);
+
+                jcontrol.addClass('open');
+
+                if (!is_empty(data['result_notifications'])) {
+                    let jnotifications_control = jQuery('div.notifications-control');
+                    if (jnotifications_control.length === 1) {
+                        jnotifications_control.children('div.notification').append(data['result_notifications']);
+                    }
+                }
+            })
+            .fail(function(err) {
+                console.log(err);
+            })
+        ;
+    }
+
+    jQuery(document)
+        .on('click', 'div.favoriteControl div.favoriteControl-content', function() {
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            if (jcontrol.hasClass('open')) jcontrol.removeClass('open');
+            else {
+                call_ajax(jcontrol, '/favorite/fav/addobjfrst?');
+            }
+            return false;
+        })
+        .on('click', 'div.favoriteControl div.favoriteControl-select', function() {
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            if (jcontrol.hasClass('open')) jcontrol.removeClass('open');
+            else {
+                call_ajax(jcontrol, '/favorite/fav/list?');
+            }
+            return false;
+        })
+        // .focusout(function() {
+        //     jQuery(this).removeClass('open');
+        // })
+        .on('click', 'div.favoriteControl div.actions-list-overlay', function() {
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            jcontrol.removeClass('open');
+            return false;
+        })
+        .on('change', 'div.favoriteControl div.actions-list input[type=checkbox]', function() {
+            let jthis = jQuery(this);
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            let wrk_fctid = jthis.data('wrk_fctid');
+            let wrk_op = (jthis.is(':checked') ? 'objadd' : 'objdel')
+
+            call_ajax(jcontrol, '/favorite/fav/'+wrk_op+'?wrk_fctid='+wrk_fctid)
+                .fail(function(err) { jthis.attr('checked',false); })
+            ;
+
+            return false;
+        })
+        .on('click', 'div.favoriteControl div.actions-list a.actions-item.plus', function() {
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            open_add_collection_modal(function() {
+                jcontrol.removeClass('open');
+                jcontrol.children('div.favoriteControl-select').click();
+            });
+            return false;
+        })
+        .on('click', 'div.favoriteControl div.actions-list a.actions-item.delete', function() {
+            let jcontrol = jQuery(this).closest('div.favoriteControl');
+            call_ajax(jcontrol, '/favorite/fav/objdelall?')
+                .done(function() { jcontrol.removeClass('open'); })
+
+            return false;
+        })
+    ;
+
+
+
+
+    // div.notifications-control
+    jQuery('div.notifications-control>div.notification').on('click', 'div.notification-item>span.notification-close', function() {
+        let target = jQuery(this).parents('.notification-item');
+        target.animate({ left: '-200%', opacity: 0 }, function() { target.remove(); });
+    });
+
+});
